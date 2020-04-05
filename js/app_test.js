@@ -11701,8 +11701,8 @@ function printClassTimetable(classData) {
                 var output = JSON.parse(xhr.response);
             } catch (e) {}
         }
+        obj = output;
         classRead();
     }
     xhr.send()
 })()
-
