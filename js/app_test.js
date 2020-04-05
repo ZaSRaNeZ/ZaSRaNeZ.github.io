@@ -11586,62 +11586,105 @@ var obj = {
         }
     }
 };
+var classListButtons = '';
 
-
-function timetableGenerator(obj) {
+function classRead() {
 
     for (let className in obj) {
+        classListButtons += `<div class="class-ask__butons" onclick="classClick(this)" classData="${className}">${className}</div>`;
 
-        classTimetable += `
-        <div class="timetable">
-            <div class="timetable__wrapper">
-                <div class="timetable__clas-name">${className}</div>
-                <div class="timetable__container">`
-
-        for (let day in obj[className]) {
-            classTimetable += `
-                    <div class="timetable__day day">
-                                <div class="day__title">${day}</div>
-                                <div class="day__content">
-                                    <ul class="day__list">`
-            for (let lesson in obj[className][day]) {
-                classTimetable += `<li class="day__list-item">
-                <div class="day__lesson-number">${lesson}</div>
-                <div class="day__lesson-info">`;
-                for (let lessoninfo in obj[className][day][lesson].lesson) {
-                    classTimetable += `<div class="day__lesson-info-block">
-                    <div class="day__lesson-info-item">${obj[className][day][lesson].lesson[lessoninfo]}</div>
-                    <div class="day__lesson-info-item">${obj[className][day][lesson].teacherName[lessoninfo]}</div>
-                    <div class="day__lesson-info-item">${obj[className][day][lesson].efir[lessoninfo]}</div>
-                    <div class="day__lesson-info-item">${obj[className][day][lesson].expl[lessoninfo]}</div>
-                    <div class="day__lesson-info-item">${obj[className][day][lesson].DZ[lessoninfo]}</div>
-                    </div>`
-                }
-                classTimetable += `    </div>
-            </li>`
-            }
-            classTimetable += `</ul>
-                                </div>
-                            </div>
-                    `
-        }
-        classTimetable += `
-                </div>
-            </div>
-        </div>`
     }
+    classListButtons += `<div class="class-ask__butons" onclick="classClick(this)" classData="all">Всі</div>`;
+    document.getElementById('class-ask__content').innerHTML = '';
+    document.getElementById('class-ask__content').innerHTML = classListButtons;
+}
 
-    timetableDiv.innerHTML += classTimetable;
-    document.getElementById('main').append(timetableDiv);
 
+// В этой функции он считывает номер класа и отправяет запрос на принт именно этого класа, в случае если все то отправляет запрос на принт всех
+
+function classClick(el) {
+
+    console.log(el.getAttribute('classData'));
+    document.getElementById('main').innerHTML = '';
+
+    startTimetablePrint();
+
+    if (el.getAttribute('classData') == 'all') {
+        for (let className in obj) {
+            printClassTimetable(className);
+        }
+    } else {
+        printClassTimetable(el.getAttribute('classData'));
+    }
+    endTimetablePrint();
+
+    document.getElementById('main').innerHTML = classTimetable;
+}
+
+// Принт начала таблицы
+
+function startTimetablePrint() {
+    classTimetable += `<div class="timetable">
+    <div class="timetable__wrapper">
+        <div class="timetable__container">
+            <div class="timetable__title">Розклад</div>`
+}
+
+
+// Закрытие тегов с принта начала таблицы
+
+function endTimetablePrint() {
+    classTimetable += ` </div>
+                    </div>
+                </div>`
+}
+
+
+
+function printClassTimetable(classData) {
+    classTimetable += `<div class="timetable__class-name">${classData}</div>`
+
+    for (let day in obj[classData]) {
+        classTimetable += `
+        <div class="timetable__day day">
+        <div class="day__title">
+            <h2>${day}</h2>
+        </div>
+        <div class="day__content">
+            <div class="day__content-title">
+                <div class="day__content-item day__content-item--number-invisible"></div>
+                <div class="day__content-item day__content-item--title">Предмет</div>
+                <div class="day__content-item day__content-item--title">Вчитель</div>
+                <div class="day__content-item day__content-item--title">Посилання на ефір</div>
+                <div class="day__content-item day__content-item--title">Роз'яснення вчителя</div>
+                <div class="day__content-item day__content-item--title">посилання на д\з</div>
+            </div>`
+
+        for (let lesson in obj[classData][day]) {
+            classTimetable += `<div class="day__content-lessons">
+                <div class="day__content-item day__content-item--number">${lesson}</div>`
+            for (let lessoninfo in obj[classData][day][lesson].lesson) {
+                classTimetable += `
+                    <div class="day__content-lessons-info">
+                        <div class="day__content-item">${obj[classData][day][lesson].lesson[lessoninfo]}</div>
+                        <div class="day__content-item">${obj[classData][day][lesson].teacherName[lessoninfo]}</div>
+                        <div class="day__content-item">${obj[classData][day][lesson].efir[lessoninfo]}</div>
+                        <div class="day__content-item">${obj[classData][day][lesson].expl[lessoninfo]}</div>
+                        <div class="day__content-item">${obj[classData][day][lesson].DZ[lessoninfo]}</div>
+                    </div>
+                    `
+            }
+
+            classTimetable += `</div>`
+        }
+        classTimetable += `</div></div>`
+    }
 
 
 
 }
 
-timetableGenerator(obj);
 
-/*============== Для теста нфиг нада
 
 
 
@@ -11658,9 +11701,8 @@ timetableGenerator(obj);
                 var output = JSON.parse(xhr.response);
             } catch (e) {}
         }
-        timetableGenerator(output);
+        classRead();
     }
     xhr.send()
 })()
 
-*/
