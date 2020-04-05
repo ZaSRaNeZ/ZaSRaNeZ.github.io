@@ -19,9 +19,11 @@
   outline: none;
 }
 
+a,
 a:focus,
 a:active {
   outline: none;
+  color: #1b61ad;
 }
 
 nav,
@@ -356,9 +358,10 @@ h6 {
 }
 
 .day__content-lessons-info {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 1 calc(95% - 10px);
-          flex: 0 1 calc(95% - 10px);
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 calc(95% - 10px);
+          flex: 1 0 calc(95% - 10px);
+  max-width: calc(95% - 10px);
 }
 
 .day__content-title {
@@ -367,18 +370,25 @@ h6 {
 
 .day__content-item {
   margin: 10px 5px;
-  -webkit-box-flex: 0;
-      -ms-flex: 0 1 calc((100% - 10px * 5) / 5);
-          flex: 0 1 calc((100% - 10px * 5) / 5);
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 calc((100% - 10px * 5) / 5);
+          flex: 1 0 calc((100% - 10px * 5) / 5);
+  max-width: calc((100% - 10px * 5) / 5);
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   color: #3b4d57;
-  height: 40px;
+  min-height: 40px;
   background-color: #c8d7de;
   text-align: center;
-  font-size: 20px;
-  line-height: 40px;
+  font-size: 14px;
+  line-height: normal;
   font-family: 'Exo 2', sans-serif;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+      -ms-hyphens: auto;
+          hyphens: auto;
+  padding: 5px;
 }
 
 .day__content-item--number, .day__content-item--number-invisible {

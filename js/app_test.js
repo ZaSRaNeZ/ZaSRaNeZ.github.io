@@ -3,10 +3,18 @@ var timetableDiv = document.createElement('div');
 var obj = {};
 var classListButtons = '';
 
+
+
+function hrefCheck(el) {
+
+
+    return (el.indexOf('http') == 0 || el.indexOf('HTTP') == 0) ? `<a href="${el}">${el}</a>` : el;
+}
+
 function classRead() {
 
     for (let className in obj) {
-        classListButtons += `<div class="class-ask__butons" onclick="classClick(this)" classData="${className}">${className}</div>`;
+        classListButtons += `<div class="class-ask__butons" onclick="classClick(this)" classData="${className}">${className.toLowerCase()}</div>`;
 
     }
     classListButtons += `<div class="class-ask__butons" onclick="classClick(this)" classData="all">Всі</div>`;
@@ -57,7 +65,7 @@ function endTimetablePrint() {
 
 
 function printClassTimetable(classData) {
-    classTimetable += `<div class="timetable__class-name">${classData}</div>`
+    classTimetable += `<div class="timetable__class-name">${classData.toLowerCase()}</div>`
 
     for (let day in obj[classData]) {
         classTimetable += `
@@ -82,10 +90,12 @@ function printClassTimetable(classData) {
                 classTimetable += `
                     <div class="day__content-lessons-info">
                         <div class="day__content-item">${obj[classData][day][lesson].lesson[lessoninfo]}</div>
-                        <div class="day__content-item">${obj[classData][day][lesson].teacherName[lessoninfo]}</div>
-                        <div class="day__content-item">${obj[classData][day][lesson].efir[lessoninfo]}</div>
-                        <div class="day__content-item">${obj[classData][day][lesson].expl[lessoninfo]}</div>
-                        <div class="day__content-item">${obj[classData][day][lesson].DZ[lessoninfo]}</div>
+                        <div class="day__content-item">${hrefCheck(obj[classData][day][lesson].teacherName[lessoninfo])}</div>
+                        <div class="day__content-item">
+                        ${hrefCheck(obj[classData][day][lesson].efir[lessoninfo])} 
+                        </div>
+                        <div class="day__content-item">${hrefCheck(obj[classData][day][lesson].expl[lessoninfo])}</div>
+                        <div class="day__content-item">${hrefCheck(obj[classData][day][lesson].DZ[lessoninfo])}</div>
                     </div>
                     `
             }
