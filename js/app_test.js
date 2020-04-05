@@ -115,7 +115,7 @@ function printClassTimetable(classData) {
 
 
 (function() {
-    var app = "https://script.google.com/macros/s/AKfycbx9mC81n4B4OVCOROQMkbCHvOHZqccpBGeIdxyhmhO5bDtt9j8/exec",
+    var app = "https://script.google.com/macros/s/AKfycbw7ToESp3irLLMSEX7sGE-IqdC7qWmsOKJDr6bjGrTzcd1wgEXy/exec",
         output = {},
         xhr = new XMLHttpRequest();
     xhr.open('GET', app);
