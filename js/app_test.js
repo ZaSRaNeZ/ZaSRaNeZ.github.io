@@ -92,7 +92,7 @@ function printClassTimetable(classData) {
             for (let lessoninfo in obj[classData][day][lesson].lesson) {
                 classTimetable += `
                     <div class="day__content-lessons-info">
-                        <div class="day__content-item">${obj[classData][day][lesson].lesson[lessoninfo]}</div>
+                        <div class="day__content-item day__content-item--lesson-name">${obj[classData][day][lesson].lesson[lessoninfo]}</div>
                         <div class="day__content-item">${hrefCheck(obj[classData][day][lesson].teacherName[lessoninfo])}</div>
                         <div class="day__content-item">
                         ${hrefCheck(obj[classData][day][lesson].efir[lessoninfo])} 

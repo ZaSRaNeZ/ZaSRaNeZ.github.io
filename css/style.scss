@@ -26,7 +26,6 @@ a:active {
     color: #1b61ad;
 }
 
-
 nav,
 footer,
 header,
@@ -88,6 +87,7 @@ h6 {
     font-size: inherit;
     font-weight: 400;
 }
+
 //============================================ BREAKPOINTS
 $md1: 'max-width: 1199px';
 $md2: 'max-width: 991px';
@@ -104,13 +104,11 @@ $md4: 'max-width: 480px';
     background-position: center center;
 }
 
-
 #main {
     max-width: 100%;
     min-width: 350px;
     min-height: 100vh;
     background-image: linear-gradient(to right top, #cae1ee, #cbd7f2, #dacaec, #eebbd7, #f8b0b5);
-
 }
 
 //============================================ preloader
@@ -121,7 +119,6 @@ $md4: 'max-width: 480px';
     color: #fff;
     font-size: 32px;
 }
-
 
 .lds-heart {
     display: inline-block;
@@ -276,7 +273,9 @@ $md4: 'max-width: 480px';
         font-size: 50px;
         font-family: 'Pacifico', cursive;
         color: #3b4d57;
-
+        position: sticky;
+        top: -100px;
+        z-index: 100;
         @media screen and ($md3) {
             position: sticky;
             top: -100px;
@@ -298,7 +297,7 @@ $md4: 'max-width: 480px';
         justify-content: flex-end;
         @media screen and ($md3) {
             flex-direction: column;
-        position: relative;
+            position: relative;
         }
     }
     &__content-lessons-info {
@@ -307,7 +306,7 @@ $md4: 'max-width: 480px';
         @media screen and ($md3) {
             flex-direction: column;
             max-width: 100%;
-            flex: 1 0 100%; 
+            flex: 1 0 100%;
         }
     }
     &__content-title {
@@ -316,10 +315,9 @@ $md4: 'max-width: 480px';
         position: sticky;
         top: 135px;
         @media screen and ($md3) {
-            display:none;
+            display: none;
             position: relative;
         }
-
     }
     &__content-item {
         margin: 10px 5px;
@@ -337,7 +335,6 @@ $md4: 'max-width: 480px';
         word-wrap: break-word;
         hyphens: auto;
         padding: 5px;
-
         @media screen and ($md3) {
             width: 100%;
             flex: 1 0 100%;

@@ -332,6 +332,10 @@ h6 {
   font-size: 50px;
   font-family: 'Pacifico', cursive;
   color: #3b4d57;
+  position: -webkit-sticky;
+  position: sticky;
+  top: -100px;
+  z-index: 100;
 }
 
 @media screen and (max-device-width: 767px) {
