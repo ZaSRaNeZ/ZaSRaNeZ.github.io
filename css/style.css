@@ -95,6 +95,7 @@ h6 {
 }
 
 #main {
+  padding-top: 100px;
   max-width: 100%;
   min-width: 350px;
   min-height: 100vh;
@@ -116,7 +117,7 @@ h6 {
   font-size: 32px;
 }
 
-.lds-heart {
+.preloader .lds-heart {
   display: inline-block;
   position: relative;
   width: 80px;
@@ -127,7 +128,7 @@ h6 {
           transform-origin: 40px 40px;
 }
 
-.lds-heart div {
+.preloader .lds-heart div {
   top: 32px;
   left: 32px;
   position: absolute;
@@ -138,8 +139,8 @@ h6 {
           animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-.lds-heart div:after,
-.lds-heart div:before {
+.preloader .lds-heart div:after,
+.preloader .lds-heart div:before {
   content: " ";
   position: absolute;
   display: block;
@@ -148,12 +149,12 @@ h6 {
   background: #fff;
 }
 
-.lds-heart div:before {
+.preloader .lds-heart div:before {
   left: -24px;
   border-radius: 50% 0 0 50%;
 }
 
-.lds-heart div:after {
+.preloader .lds-heart div:after {
   top: -24px;
   border-radius: 50% 50% 0 0;
 }
@@ -209,6 +210,60 @@ h6 {
   100% {
     -webkit-transform: scale(0.9);
             transform: scale(0.9);
+  }
+}
+
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 102;
+}
+
+.header__content {
+  width: 100%;
+  background-color: #3b4d57;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@media screen and (max-device-width: 767px) {
+  .header__content {
+    height: 100px;
+  }
+}
+
+.header__back {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 20%;
+          flex: 0 0 20%;
+  min-width: 20%;
+}
+
+.header__back i.left {
+  border: solid #fff;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 12px;
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+@media screen and (max-device-width: 767px) {
+  .header__back i.left {
+    padding: 25px;
   }
 }
 
@@ -334,7 +389,7 @@ h6 {
   color: #3b4d57;
   position: -webkit-sticky;
   position: sticky;
-  top: -100px;
+  top: -50px;
   z-index: 100;
 }
 
@@ -342,7 +397,7 @@ h6 {
   .day__title {
     position: -webkit-sticky;
     position: sticky;
-    top: -100px;
+    top: 0px;
     z-index: 100;
   }
 }
@@ -405,7 +460,7 @@ h6 {
   z-index: 100;
   position: -webkit-sticky;
   position: sticky;
-  top: 135px;
+  top: 165px;
 }
 
 @media screen and (max-device-width: 767px) {

@@ -132,7 +132,36 @@ function printClassTimetable(classData) {
             } catch (e) {}
         }
         obj = output;
+        document.getElementById('header__back').setAttribute('onclick', 'back()')
         classRead();
     }
     xhr.send()
 })()
+
+
+
+function back() {
+
+    classListButtons = `<div class="class-ask">
+    <div class="class-ask__wrapper">
+        <div class="class-ask__container">
+            <div class="class-ask__title">Обери клас</div>
+            <div class="class-ask__content" id="class-ask__content">
+                <div class="preloader">
+                    <div class="preloader__animation lds-heart">
+                        <div></div>
+                    </div>
+                    <div class="preloader__text"> Ще секундочку</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>`;
+
+    document.getElementById('main').innerHTML = '';
+    document.getElementById('main').innerHTML = classListButtons;
+
+    classListButtons = '';
+    classRead();
+
+}

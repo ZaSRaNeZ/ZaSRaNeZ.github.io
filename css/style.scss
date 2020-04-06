@@ -97,6 +97,10 @@ $md4: 'max-width: 480px';
 //========================== FONTS
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Exo+2&display=swap');
+//============================================ VARIABLES
+$back-color:#3b4d57;
+$accent-color:#f8b0b5;
+$back-color-item: #c8d7de;
 //============================================ MAIN-BLOCKS
 .ibg {
     background-repeat: no-repeat;
@@ -105,10 +109,11 @@ $md4: 'max-width: 480px';
 }
 
 #main {
+    padding-top: 100px;
     max-width: 100%;
     min-width: 350px;
     min-height: 100vh;
-    background-image: linear-gradient(to right top, #cae1ee, #cbd7f2, #dacaec, #eebbd7, #f8b0b5);
+    background-image: linear-gradient(to right top, #cae1ee, #cbd7f2, #dacaec, #eebbd7, $accent-color);
 }
 
 //============================================ preloader
@@ -118,66 +123,98 @@ $md4: 'max-width: 480px';
     align-items: center;
     color: #fff;
     font-size: 32px;
+    .lds-heart {
+        display: inline-block;
+        position: relative;
+        width: 80px;
+        height: 80px;
+        transform: rotate(45deg);
+        transform-origin: 40px 40px;
+    }
+    .lds-heart div {
+        top: 32px;
+        left: 32px;
+        position: absolute;
+        width: 32px;
+        height: 32px;
+        background: #fff;
+        animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    .lds-heart div:after,
+    .lds-heart div:before {
+        content: " ";
+        position: absolute;
+        display: block;
+        width: 32px;
+        height: 32px;
+        background: #fff;
+    }
+    .lds-heart div:before {
+        left: -24px;
+        border-radius: 50% 0 0 50%;
+    }
+    .lds-heart div:after {
+        top: -24px;
+        border-radius: 50% 50% 0 0;
+    }
+    @keyframes lds-heart {
+        0% {
+            transform: scale(0.95);
+        }
+        5% {
+            transform: scale(1.1);
+        }
+        39% {
+            transform: scale(0.85);
+        }
+        45% {
+            transform: scale(1);
+        }
+        60% {
+            transform: scale(0.95);
+        }
+        100% {
+            transform: scale(0.9);
+        }
+    }
 }
 
-.lds-heart {
-    display: inline-block;
-    position: relative;
-    width: 80px;
-    height: 80px;
-    transform: rotate(45deg);
-    transform-origin: 40px 40px;
-}
-
-.lds-heart div {
-    top: 32px;
-    left: 32px;
-    position: absolute;
-    width: 32px;
-    height: 32px;
-    background: #fff;
-    animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
-}
-
-.lds-heart div:after,
-.lds-heart div:before {
-    content: " ";
-    position: absolute;
-    display: block;
-    width: 32px;
-    height: 32px;
-    background: #fff;
-}
-
-.lds-heart div:before {
-    left: -24px;
-    border-radius: 50% 0 0 50%;
-}
-
-.lds-heart div:after {
-    top: -24px;
-    border-radius: 50% 50% 0 0;
-}
-
-@keyframes lds-heart {
-    0% {
-        transform: scale(0.95);
+//============================================ HEADER
+.header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 102;
+    &__content {
+        width: 100%;
+        background-color: $back-color;
+        height: 50px;
+        display: flex;
+        @media screen and ($md3) {
+            height: 100px;
+        }
     }
-    5% {
-        transform: scale(1.1);
+    &__back {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        flex: 0 0 20%;
+        min-width: 20%;
+        i.left {
+            border: solid #fff;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 12px;
+            transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+            @media screen and ($md3) {
+                padding: 25px;
+            }
+        }
     }
-    39% {
-        transform: scale(0.85);
-    }
-    45% {
-        transform: scale(1);
-    }
-    60% {
-        transform: scale(0.95);
-    }
-    100% {
-        transform: scale(0.9);
-    }
+    &__nav {}
+    &__nav-item {}
 }
 
 //============================================ class-ask
@@ -200,10 +237,10 @@ $md4: 'max-width: 480px';
         line-height: 170px;
         font-size: 60px;
         font-family: 'Pacifico', cursive;
-        color: #3b4d57;
+        color: $back-color;
     }
     &__content {
-        background-color: #3b4d57;
+        background-color: $back-color;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -214,9 +251,9 @@ $md4: 'max-width: 480px';
         margin: 10px 5px;
         flex: 0 0 150px;
         box-sizing: border-box;
-        color: #3b4d57;
+        color: $back-color;
         height: 55px;
-        background-color: #c8d7de;
+        background-color: $back-color-item;
         font-size: 32px;
         line-height: 55px;
         font-family: 'Pacifico', cursive;
@@ -224,7 +261,7 @@ $md4: 'max-width: 480px';
         cursor: pointer;
         transition: 0.2s all ease;
         &:hover {
-            background-color: #f8b0b5;
+            background-color: $accent-color;
         }
     }
 }
@@ -242,17 +279,17 @@ $md4: 'max-width: 480px';
         line-height: 270px;
         font-size: 60px;
         font-family: 'Pacifico', cursive;
-        color: #3b4d57;
+        color: $back-color;
     }
     &__class-name {
         text-align: center;
         line-height: 150px;
         font-size: 60px;
         font-family: 'Pacifico', cursive;
-        color: #f8b0b5;
+        color: $accent-color;
         width: 90%;
         margin: 0 auto;
-        background-color: #3b4d57;
+        background-color: $back-color;
     }
     &__day {
         width: 90%;
@@ -272,19 +309,19 @@ $md4: 'max-width: 480px';
         line-height: 270px;
         font-size: 50px;
         font-family: 'Pacifico', cursive;
-        color: #3b4d57;
+        color: $back-color;
         position: sticky;
-        top: -100px;
+        top: -50px;
         z-index: 100;
         @media screen and ($md3) {
             position: sticky;
-            top: -100px;
+            top: 0px;
             z-index: 100;
         }
     }
     &__content {
         padding: 20px;
-        background-color: #3b4d57;
+        background-color: $back-color;
     }
     &__content-title,
     &__content-lessons,
@@ -313,7 +350,7 @@ $md4: 'max-width: 480px';
         margin-top: -55px;
         z-index: 100;
         position: sticky;
-        top: 135px;
+        top: 165px;
         @media screen and ($md3) {
             display: none;
             position: relative;
@@ -329,9 +366,9 @@ $md4: 'max-width: 480px';
         flex: 1 0 calc((100% - 10px * 5) / 5);
         max-width: calc((100% - 10px * 5) / 5);
         box-sizing: border-box;
-        color: #3b4d57;
+        color: $back-color;
         min-height: 40px;
-        background-color: #c8d7de;
+        background-color: $back-color-item;
         text-align: center;
         font-size: 14px;
         line-height: normal;
@@ -351,9 +388,9 @@ $md4: 'max-width: 480px';
         &--number-invisible {
             flex: 0 0 5%;
             max-width: 5%;
-            background-color: #f8b0b5;
+            background-color: $accent-color;
             text-align: center;
-            color: #3b4d57;
+            color: $back-color;
             font-size: 40px;
             line-height: 46px;
             font-family: 'Pacifico', cursive;
@@ -369,7 +406,7 @@ $md4: 'max-width: 480px';
         }
         &--title {
             text-align: center;
-            background-color: #f8b0b5;
+            background-color: $accent-color;
             font-size: 20px;
             font-family: 'Pacifico', cursive;
             flex: 0 1 calc((95% - 10px * 6) / 5);
