@@ -5,10 +5,13 @@ var classListButtons = '';
 
 
 
-function hrefCheck(el) {
+function hrefCheck(str) {
 
+var re = /(https?|ftp):\/\/\S+[^\s.,> )\];'\"!?]/g; 
+var template = '<a href="$&" target="_blank">$&</a>'; 
+var out = str.replace(re, template);
 
-    return (el.indexOf('http') == 0 || el.indexOf('HTTP') == 0) ? `<a href="${el}">${el}</a>` : el;
+    return out;
 }
 
 function classRead() {

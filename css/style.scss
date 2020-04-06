@@ -26,6 +26,7 @@ a:active {
     color: #1b61ad;
 }
 
+
 nav,
 footer,
 header,
@@ -67,7 +68,7 @@ a:visited {
 }
 
 a:hover {
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 ul li {
@@ -308,6 +309,7 @@ h6 {
         &--number,
         &--number-invisible {
             flex: 0 0 5%;
+            max-width: 5%;
             background-color: #f8b0b5;
             text-align: center;
             color: #3b4d57;
