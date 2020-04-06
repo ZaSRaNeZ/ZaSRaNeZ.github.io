@@ -100,9 +100,11 @@ h6 {
 }
 
 #main {
-    min-width: 100%;
+    max-width: 100%;
+    min-width: 750px;
     min-height: 100vh;
     background-image: linear-gradient(to right top, #cae1ee, #cbd7f2, #dacaec, #eebbd7, #f8b0b5);
+
 }
 
 //============================================ preloader
