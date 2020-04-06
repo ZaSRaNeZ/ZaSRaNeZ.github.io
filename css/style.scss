@@ -88,20 +88,26 @@ h6 {
     font-size: inherit;
     font-weight: 400;
 }
-
+//============================================ BREAKPOINTS
+$md1: 'max-width: 1199px';
+$md2: 'max-width: 991px';
+$md3: 'max-device-width: 767px';
+$md4: 'max-width: 480px';
+//============================================ MIXINS
 //========================== FONTS
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Exo+2&display=swap');
-//========================== MAIN-BLOCKS
+//============================================ MAIN-BLOCKS
 .ibg {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
 }
 
+
 #main {
     max-width: 100%;
-    min-width: 750px;
+    min-width: 350px;
     min-height: 100vh;
     background-image: linear-gradient(to right top, #cae1ee, #cbd7f2, #dacaec, #eebbd7, #f8b0b5);
 
@@ -115,6 +121,7 @@ h6 {
     color: #fff;
     font-size: 32px;
 }
+
 
 .lds-heart {
     display: inline-block;
@@ -283,13 +290,26 @@ h6 {
     &__content-lessons {
         flex-wrap: wrap;
         justify-content: flex-end;
+        @media screen and ($md3) {
+            flex-direction: column;
+        position: relative;
+        }
     }
     &__content-lessons-info {
         flex: 1 0 calc(95% - 10px);
         max-width: calc(95% - 10px);
+        @media screen and ($md3) {
+            flex-direction: column;
+            max-width: 100%;
+            flex: 1 0 100%; 
+        }
     }
     &__content-title {
         margin-top: -55px;
+        @media screen and ($md3) {
+            display:none;
+        }
+
     }
     &__content-item {
         margin: 10px 5px;
@@ -307,6 +327,14 @@ h6 {
         word-wrap: break-word;
         hyphens: auto;
         padding: 5px;
+
+        @media screen and ($md3) {
+            width: 100%;
+            flex: 1 0 100%;
+            max-width: 100%;
+            margin: 10px 0;
+            font-size: 36px;
+        }
         &--number,
         &--number-invisible {
             flex: 0 0 5%;
@@ -317,6 +345,12 @@ h6 {
             font-size: 40px;
             line-height: 46px;
             font-family: 'Pacifico', cursive;
+            @media screen and ($md3) {
+                width: 100%;
+                flex: 1 0 100%;
+                max-width: 100%;
+                margin: 10px 0;
+            }
         }
         &--number-invisible {
             opacity: 0;

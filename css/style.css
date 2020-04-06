@@ -96,7 +96,7 @@ h6 {
 
 #main {
   max-width: 100%;
-  min-width: 750px;
+  min-width: 350px;
   min-height: 100vh;
   background-image: -webkit-gradient(linear, left bottom, right top, from(#cae1ee), color-stop(#cbd7f2), color-stop(#dacaec), color-stop(#eebbd7), to(#f8b0b5));
   background-image: linear-gradient(to right top, #cae1ee, #cbd7f2, #dacaec, #eebbd7, #f8b0b5);
@@ -357,6 +357,16 @@ h6 {
           justify-content: flex-end;
 }
 
+@media screen and (max-device-width: 767px) {
+  .day__content-lessons {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    position: relative;
+  }
+}
+
 .day__content-lessons-info {
   -webkit-box-flex: 1;
       -ms-flex: 1 0 calc(95% - 10px);
@@ -364,8 +374,27 @@ h6 {
   max-width: calc(95% - 10px);
 }
 
+@media screen and (max-device-width: 767px) {
+  .day__content-lessons-info {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    max-width: 100%;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 0 100%;
+            flex: 1 0 100%;
+  }
+}
+
 .day__content-title {
   margin-top: -55px;
+}
+
+@media screen and (max-device-width: 767px) {
+  .day__content-title {
+    display: none;
+  }
 }
 
 .day__content-item {
@@ -391,6 +420,18 @@ h6 {
   padding: 5px;
 }
 
+@media screen and (max-device-width: 767px) {
+  .day__content-item {
+    width: 100%;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 0 100%;
+            flex: 1 0 100%;
+    max-width: 100%;
+    margin: 10px 0;
+    font-size: 36px;
+  }
+}
+
 .day__content-item--number, .day__content-item--number-invisible {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 5%;
@@ -402,6 +443,17 @@ h6 {
   font-size: 40px;
   line-height: 46px;
   font-family: 'Pacifico', cursive;
+}
+
+@media screen and (max-device-width: 767px) {
+  .day__content-item--number, .day__content-item--number-invisible {
+    width: 100%;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 0 100%;
+            flex: 1 0 100%;
+    max-width: 100%;
+    margin: 10px 0;
+  }
 }
 
 .day__content-item--number-invisible {
