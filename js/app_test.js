@@ -7,9 +7,9 @@ var classListButtons = '';
 
 function hrefCheck(str) {
 
-var re = /(https?|ftp):\/\/\S+[^\s.,> )\];'\"!?]/g; 
-var template = '<a href="$&" target="_blank">$&</a>'; 
-var out = str.replace(re, template);
+    var re = /(https?|ftp):\/\/\S+[^\s.,> )\];'\"!?]/g;
+    var template = '<a href="$&" target="_blank">$&</a>';
+    var out = str.replace(re, template);
 
     return out;
 }
