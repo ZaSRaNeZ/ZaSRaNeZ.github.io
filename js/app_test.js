@@ -90,7 +90,6 @@ function printClassTimetable(classData) {
             classTimetable += `<div class="day__content-item-time">${obj[classData][day][lesson].time}</div>
             <div class="day__content-lessons">
                 <div class="day__content-item day__content-item--number">${lesson}</div>`
-            console.log(obj[classData][day][lesson].time);
             for (let lessoninfo in obj[classData][day][lesson].lesson) {
                 classTimetable += `
                     <div class="day__content-lessons-info">
@@ -113,11 +112,6 @@ function printClassTimetable(classData) {
 
 
 }
-
-
-
-
-
 
 (function() {
     var app = "https://script.google.com/macros/s/AKfycbw7ToESp3irLLMSEX7sGE-IqdC7qWmsOKJDr6bjGrTzcd1wgEXy/exec",

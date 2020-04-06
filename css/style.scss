@@ -201,6 +201,9 @@ $back-color-item: #c8d7de;
         text-align: center;
         flex: 0 0 20%;
         min-width: 20%;
+        &__back:hover {
+            background: $accent-color;
+        }
         i.left {
             border: solid #fff;
             border-width: 0 3px 3px 0;
