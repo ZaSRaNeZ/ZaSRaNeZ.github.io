@@ -68,9 +68,12 @@ function endTimetablePrint() {
 
 
 function printClassTimetable(classData) {
-    classTimetable += `<div class="timetable__class-name">${classData.toLowerCase()}</div>`
+    classTimetable = '';
+
+    classTimetable += `<div class="timetable__class-name">${classData.toLowerCase()}</div>`;
 
     for (let day in obj[classData]) {
+
         classTimetable += `
         <div class="timetable__day day">
         <div class="day__title">
