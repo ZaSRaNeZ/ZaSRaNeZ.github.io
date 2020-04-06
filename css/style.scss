@@ -319,6 +319,11 @@ $md4: 'max-width: 480px';
             position: relative;
         }
     }
+    &__content-item-time {
+        color: #fff;
+        text-align: left;
+        font-size: 24px;
+    }
     &__content-item {
         margin: 10px 5px;
         flex: 1 0 calc((100% - 10px * 5) / 5);

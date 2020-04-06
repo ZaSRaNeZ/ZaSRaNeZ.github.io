@@ -415,6 +415,12 @@ h6 {
   }
 }
 
+.day__content-item-time {
+  color: #fff;
+  text-align: left;
+  font-size: 24px;
+}
+
 .day__content-item {
   margin: 10px 5px;
   -webkit-box-flex: 1;
