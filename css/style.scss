@@ -276,6 +276,12 @@ $md4: 'max-width: 480px';
         font-size: 50px;
         font-family: 'Pacifico', cursive;
         color: #3b4d57;
+
+        @media screen and ($md3) {
+            position: sticky;
+            top: -100px;
+            z-index: 100;
+        }
     }
     &__content {
         padding: 20px;
@@ -306,8 +312,12 @@ $md4: 'max-width: 480px';
     }
     &__content-title {
         margin-top: -55px;
+        z-index: 100;
+        position: sticky;
+        top: 135px;
         @media screen and ($md3) {
             display:none;
+            position: relative;
         }
 
     }

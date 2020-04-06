@@ -334,6 +334,15 @@ h6 {
   color: #3b4d57;
 }
 
+@media screen and (max-device-width: 767px) {
+  .day__title {
+    position: -webkit-sticky;
+    position: sticky;
+    top: -100px;
+    z-index: 100;
+  }
+}
+
 .day__content {
   padding: 20px;
   background-color: #3b4d57;
@@ -389,11 +398,16 @@ h6 {
 
 .day__content-title {
   margin-top: -55px;
+  z-index: 100;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 135px;
 }
 
 @media screen and (max-device-width: 767px) {
   .day__content-title {
     display: none;
+    position: relative;
   }
 }
 
