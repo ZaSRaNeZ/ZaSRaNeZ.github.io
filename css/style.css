@@ -250,6 +250,12 @@ h6 {
       -ms-flex: 0 0 20%;
           flex: 0 0 20%;
   min-width: 20%;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
+
+.header__back:hover {
+  background: #f8b0b5;
 }
 
 .header__back i.left {
