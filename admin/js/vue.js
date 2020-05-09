@@ -122,7 +122,11 @@ var app = new Vue({
             subject: false,
         },
         adminName: 'Вибивана Л.М.',
-        preloaderStart: true
+        teachers: [],
+        preloaderStart: true,
+        openUserStatus: false,
+        adminNameSearch: '',
+        showEmptyLessons: false
 
     },
     methods: {
@@ -146,11 +150,12 @@ var app = new Vue({
         },
         checkFilter: function(arr) {
             var out = true; // Нужно для окончательного вывода
-            if (this.adminName == arr[7] || arr[7].trim() == '') {
+            if (this.adminName == arr[7] || (this.showEmptyLessons ? arr[7].trim() == '' : false)) {
                 out = true;
             } else {
                 return false;
             }
+
             // проверка на пустоту масивов фильтра
             if (this.classFilterArr.length == 0 &&
                 this.dayFilterArr.length == 0 &&
@@ -202,12 +207,20 @@ var app = new Vue({
                 saveData(output);
             }
             xhr.send()
+        },
+        selectUserStatus: function() {
+            this.openUserStatus = this.openUserStatus ? false : true;
+        },
+        selectUser: function(name) {
+            this.adminName = name;
+            this.openUserStatus = false;
+        },
+        showEmpty: function() {
+            this.showEmptyLessons = this.showEmptyLessons ? false : true;
         }
     },
     beforeMount: function() {
         this.getData();
-        console.log('beforeMount()');
-        console.log(this.all);
 
     },
     watch: {}
@@ -218,5 +231,6 @@ function saveData(data) {
     app.classes = data.classes;
     app.days = data.days;
     app.lessons = data.lessons;
+    app.teachers = data.teachers;
     app.preloaderStart = false;
 }

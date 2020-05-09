@@ -24,12 +24,25 @@
         <header class="header">
             <div class="header__container">
                 <div class="header__content">
-                    <div class="header__account">
+                    <div @click="selectUserStatus()" class="header__account">
                         <div class="header__account-icon"><img src="img/user.png" alt=""></div>
                         <div class="header__account-name">{{adminName}}</div>
-                        <div class="header__account-open-button"></div>
+                        <div class="header__account-open-button" v-bind:class="{'header__account-open-button--active':openUserStatus}"></div>
                     </div>
-                    <div class="header__account-select"></div>
+                    <div class="header__account-select account" v-bind:class="{'header__account-select--active':openUserStatus}">
+                        <div class="account__container">
+                            <div class="account__wrapper">
+                                <div class="account__content">
+                                    <div class="account__search"><input type="text" class="account__search-input" v-model:value="adminNameSearch" placeholder="Введите имя для поиска"></div>
+                                    <div class="account__items">
+                                        <ul class="account__list">
+                                            <li v-for="teacher in teachers" v-if="teacher[1].toLowerCase().indexOf(adminNameSearch.toLowerCase()) >=0" @click="selectUser(teacher[1])" class="account__item"><span>{{teacher[1]}}</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </header>
@@ -39,6 +52,17 @@
             </nav>
         </aside>
         <div class="content">
+            <div class="aditional-filter">
+                <div class="aditional-filter__conteiner">
+                    <div class="aditional-filter__title">
+                        <h3>Отображать уроки без учителя?</h3>
+                    </div>
+                    <div class="aditional-filter__buttons" @click="showEmpty()" v-bind:class="{'aditional-filter__buttons--yes':showEmptyLessons , 'aditional-filter__buttons--no':!showEmptyLessons}">
+                        <div class="aditional-filter__button" v-bind:class="{'aditional-filter__button--active': showEmptyLessons}">Да</div>
+                        <div class="aditional-filter__button" v-bind:class="{'aditional-filter__button--active': !showEmptyLessons}">Нет</div>
+                    </div>
+                </div>
+            </div>
             <div class="content__title">
                 <h1>Таблица для внесения данных</h1>
             </div>
