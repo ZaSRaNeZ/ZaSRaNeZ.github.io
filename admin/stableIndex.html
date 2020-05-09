@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <div class="header">
+                <div class="header__container">
+                    <div class="header__content">
+                        <div class="header__account"></div>
+                        <div class="header__account-select"></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <aside class="aside">
+            <nav class="nav">
+            </nav>
+        </aside>
+        <div class="table">
+            <div class="table__edit-text">{{editText}}</div>
+            <table class="table__table">
+                <thead>
+                    <tr class="table__row table__row--head">
+                        <th class="table__cell table__cell--head" id>id</th>
+                        <th class="table__cell table__cell--head">Дата</th>
+                        <th class="table__cell table__cell--head">День</th>
+                        <th class="table__cell table__cell--head">Клас</th>
+                        <th class="table__cell table__cell--head">Урок</th>
+                        <th class="table__cell table__cell--head">Время проведения</th>
+                        <th class="table__cell table__cell--head">Предмет</th>
+                        <th class="table__cell table__cell--head">Учитель</th>
+                        <th class="table__cell table__cell--head">посилання на ефір</th>
+                        <th class="table__cell table__cell--head">роз'яснення вчителя</th>
+                        <th class="table__cell table__cell--head">посилання на д\з</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item in all" :item="item" v-on:change="smFunc(item)" class="table__row">
+                        <td class="table__cell"><input class="table__cell-input" v-on:click="editTextChange(item[0])" type="text" v-model:value="item[0]"></td>
+                        <td class="table__cell"><input class="table__cell-input" v-on:click="editTextChange(item[1])" type="text" v-model:value="item[1]"></td>
+                        <td class="table__cell"><input class="table__cell-input" v-on:click="editTextChange(item[2])" type="text" v-model:value="item[2]"></td>
+                        <td class="table__cell"><input class="table__cell-input" v-on:click="editTextChange(item[3])" type="text" v-model:value="item[3]"></td>
+                        <td class="table__cell"><input class="table__cell-input" v-on:click="editTextChange(item[4])" type="text" v-model:value="item[4]"></td>
+                        <td class="table__cell"><input class="table__cell-input" v-on:click="editTextChange(item[5])" type="text" v-model:value="item[5]"></td>
+                        <td class="table__cell"><input class="table__cell-input" v-on:click="editTextChange(item[6])" type="text" v-model:value="item[6]"></td>
+                        <td class="table__cell"><input class="table__cell-input" v-on:click="editTextChange(item[7])" type="text" v-model:value="item[7]"></td>
+                        <td class="table__cell"><input class="table__cell-input" v-on:click="editTextChange(item[8])" type="text" v-model:value="item[8]"></td>
+                        <td class="table__cell"><input class="table__cell-input" v-on:click="editTextChange(item[9])" type="text" v-model:value="item[9]"></td>
+                        <td class="table__cell"><input class="table__cell-input" v-on:click="editTextChange(item[10])" type="text" v-model:value="item[10]"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="/js/vue.js"></script>
+</body>
+
+</html>

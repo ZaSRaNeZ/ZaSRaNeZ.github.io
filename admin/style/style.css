@@ -1,0 +1,384 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+ul[class],
+ol[class],
+li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+#app {
+  background: #f5f6fa;
+  min-width: 1300px;
+  position: relative;
+}
+
+.header {
+  background: #fff;
+  -webkit-box-shadow: 0 0 10px #cccccc;
+          box-shadow: 0 0 10px #cccccc;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: block;
+  width: 100%;
+  min-width: 1300px;
+}
+
+.header__content {
+  height: 50px;
+}
+
+.header__account {
+  height: 100%;
+  position: absolute;
+  right: 0;
+  line-height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-transition: 0.2s all ease;
+  transition: 0.2s all ease;
+  cursor: pointer;
+}
+
+.header__account::after {
+  content: '';
+  width: 0;
+  position: absolute;
+  height: 100%;
+  background: #ff4e4a;
+  right: 0;
+  -webkit-transition: 0.4s all;
+  transition: 0.4s all;
+  z-index: -1;
+}
+
+.header__account:hover::after {
+  width: 100%;
+}
+
+.header__account:hover .header__account-open-button::after {
+  top: 0;
+}
+
+.header__account:hover .header__account-open-button::before {
+  border-color: #ff4e4a;
+}
+
+.header__account:hover .header__account-name {
+  color: #fff;
+}
+
+.header__account-icon {
+  width: 50px;
+  height: 50px;
+}
+
+.header__account-icon img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.header__account-open-button {
+  width: 50px;
+  height: 50px;
+  border-left: 1px solid #e2e2e2;
+  position: relative;
+}
+
+.header__account-open-button::after {
+  content: '';
+  width: 50px;
+  position: absolute;
+  height: 50px;
+  background: #272727;
+  top: -100%;
+  -webkit-transition: 0.4s all;
+  transition: 0.4s all;
+  z-index: 0;
+  right: 0;
+}
+
+.header__account-open-button::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  display: block;
+  border-bottom: 2px solid #000;
+  border-right: 2px solid #000;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  position: absolute;
+  left: 17px;
+  top: 15px;
+  z-index: 2;
+}
+
+.header__account-name {
+  padding: 0 20px;
+}
+
+.aside {
+  width: 50px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: #272727;
+  z-index: 11;
+}
+
+.aside__logo {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #ff4e4a;
+}
+
+.preloader {
+  z-index: 999;
+  position: absolute;
+  top: -50px;
+  left: 0;
+}
+
+.preloader__overlay {
+  min-width: 100vw;
+  min-height: 100vh;
+  background-color: #000;
+}
+
+.preloader #preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.preloader #loader {
+  display: block;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #9370DB;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+.preloader #loader:before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #ff7b79;
+  -webkit-animation: spin 3s linear infinite;
+  animation: spin 3s linear infinite;
+}
+
+.preloader #loader:after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #ff4e4a;
+  -webkit-animation: spin 1.5s linear infinite;
+  animation: spin 1.5s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.content {
+  margin-left: 50px;
+  margin-top: 50px;
+}
+
+.content__title {
+  padding: 50px 100px;
+}
+
+.filter__content {
+  padding: 0 100px;
+}
+
+.filter__title {
+  margin-left: -20px;
+}
+
+.filter__title-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.filter__title-item {
+  padding: 10px 20px;
+  cursor: pointer;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+  border-bottom: 4px solid transparent;
+}
+
+.filter__title-item--active {
+  border-bottom: 4px solid #ff4e4a;
+}
+
+.filter__title-item:hover {
+  color: #ff4e4a;
+}
+
+.filter__item {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 100px;
+          flex: 0 0 100px;
+  padding: 15px 35px;
+  margin: 15px;
+  border: 1px solid #ff4e4a;
+  text-align: center;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-transition: 0.2s all ease;
+  transition: 0.2s all ease;
+}
+
+.filter__item--active {
+  background-color: #ff4e4a;
+  color: #fff;
+}
+
+.filter__item:hover {
+  background-color: #ff4e4a;
+  color: #fff;
+}
+
+.filter__container {
+  height: 350px;
+}
+
+.filter__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+}
+
+.table__table {
+  border-collapse: collapse;
+  overflow: hidden;
+  background: #7918f2;
+  background: linear-gradient(-68deg, #ac32e4, #4801ff);
+  width: 100%;
+  min-width: 1250px;
+}
+
+.table__edit-text {
+  width: 100%;
+  min-height: 30px;
+  padding: 4px;
+}
+
+.table__row--head {
+  background-color: rgba(255, 255, 255, 0.32) !important;
+}
+
+.table__row:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.table__cell--head {
+  padding: 20px 10px;
+}
+
+.table__cell {
+  font-size: 14px;
+  color: #fff;
+  line-height: 1.4;
+}
+
+.table__cell:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.table__cell--empty {
+  border: none;
+  text-align: center;
+  font-size: 14px;
+  color: #fff;
+  line-height: 1.4;
+  background: transparent;
+  padding: 14px 10px;
+  cursor: default;
+}
+
+.table__cell-input {
+  border: none;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  color: #fff;
+  line-height: 1.4;
+  background: transparent;
+  padding: 14px 5px;
+}
+
+.table__cell-input:focus {
+  border: none;
+  background: rgba(255, 255, 255, 0.6);
+  outline: none;
+}
+/*# sourceMappingURL=style.css.map */
