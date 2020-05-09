@@ -1,11 +1,18 @@
+<!-- Сообщаем браузеру как стоит обрабатывать эту страницу -->
 <!DOCTYPE html>
-<html lang="ua">
+<!-- Оболочка документа, указываем язык содержимого -->
+<html lang="ru">
+<!-- Заголовок страницы, контейнер для других важных данных (не отображается) -->
 
 <head>
+    <!-- Заголовок страницы в браузере -->
     <title>title</title>
+    <!-- Подключаем CSS -->
     <link rel="stylesheet" href="css/style.css" />
+    <!-- Кодировка страницы -->
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
 </head>
+<!-- Отображаемое тело страницы -->
 
 <body>
     <header class="header">
@@ -16,15 +23,11 @@
             </div>
         </div>
     </header>
-
-    <div id="app">
-
-    </div>
     <main class="main" id="main">
         <div class="class-ask">
             <div class="class-ask__wrapper">
                 <div class="class-ask__container">
-                    <div class="class-ask__title">Обери клас</div>
+                    <div class="class-ask__title">Розклад 5-11 класів</div>
                     <div class="class-ask__content" id="class-ask__content">
                         <div class="preloader">
                             <div class="preloader__animation lds-heart">
@@ -38,6 +41,7 @@
             </div>
         </div>
     </main>
+    <script src="/js/app_test.js"></script>
 </body>
 
 </html>
