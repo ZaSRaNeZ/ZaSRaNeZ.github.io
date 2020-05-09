@@ -20,6 +20,16 @@ li {
     position: relative;
 }
 
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity .5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+}
+
 .header {
     background: #fff;
     box-shadow: 0 0 10px #cccccc;

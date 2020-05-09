@@ -100,7 +100,13 @@ var obj = {};
     xhr.send()
 })()*/
 
-
+/*
+todo: сделать авторизацию
+ссылка  для проверки авторизации https://script.google.com/macros/s/AKfycbxrXNJrQRsUZPDFAseYpI09Br5Q05Vl6CGktPBZqQxgLmPAFKwM/exec?id=1&login=vibivana&pass=pass222
+id - В случае если один из заготовленых клиентов (упрощает поиск в базе)
+login - если просто вводить логин и пароль, не выбирая из предложеных
+pass - пароль к акку
+*/
 var app = new Vue({
     el: '#app',
     data: {

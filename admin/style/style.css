@@ -21,6 +21,17 @@ li {
   position: relative;
 }
 
+.fade-enter-active,
+.fade-leave-active {
+  -webkit-transition: opacity .5s;
+  transition: opacity .5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
 .header {
   background: #fff;
   -webkit-box-shadow: 0 0 10px #cccccc;
