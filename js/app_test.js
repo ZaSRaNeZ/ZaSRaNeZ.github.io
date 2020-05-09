@@ -128,6 +128,7 @@ function printClassTimetable(classData) {
                 var output = JSON.parse(xhr.response);
             } catch (e) {}
         }
+        console.log('file get')
         obj = output;
         document.getElementById('header__back').setAttribute('onclick', 'back()')
         classRead();
