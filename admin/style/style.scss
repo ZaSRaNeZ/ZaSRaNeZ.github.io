@@ -444,6 +444,9 @@ li {
         min-height: 30px;
         //max-height: 30px;
         padding: 4px;
+        position: sticky;
+        top: 50px;
+        background: #f5f6fa;
     }
     &__row {
         &--head {
