@@ -286,7 +286,7 @@ Vue.component('dataTable', {
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="item in this.$root.inputData.all" v-if="rowRender(item)" v-on:change="this.$root.save(item)" class="table__row">
+                <tr v-for="item in this.$root.inputData.all" v-if="rowRender(item)" v-on:change="save(item)" class="table__row">
                     <td class="table__cell table__cell--empty">{{item[0]}}</td>
                     <td class="table__cell table__cell--empty">{{item[1]}}</td>
                     <td class="table__cell table__cell--empty">{{item[2]}}</td>
@@ -309,6 +309,15 @@ Vue.component('dataTable', {
         },
         rowRender: function(item) {
             return this.$root.checkFilter(item);
+        },
+        // Сохранить измененную строку
+        save: function(arr) {
+            console.log(arr)
+            var urlSend = `${this.url}?id=${arr[0]}&teacher=${arr[7]}&href=${arr[8]}&teacherInfo=${arr[9]}&hw=${arr[10]}`;
+            console.log(urlSend);
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", urlSend, true); // true for asynchronous 
+            xmlHttp.send(null);
         }
     }
 })
@@ -339,14 +348,7 @@ var app = new Vue({
 
     },
     methods: {
-        save: function(arr) {
-            console.log(arr)
-            var urlSend = `${this.url}?id=${arr[0]}&teacher=${arr[7]}&href=${arr[8]}&teacherInfo=${arr[9]}&hw=${arr[10]}`;
-            console.log(urlSend);
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open("GET", urlSend, true); // true for asynchronous 
-            xmlHttp.send(null);
-        },
+
         settingsCheck(arr) {
             var out = false; // Нужно для окончательного вывода
             if (this.adminName == arr[7] || (this.settings.showEmptyLessons ? arr[7].trim() == '' : false)) {
