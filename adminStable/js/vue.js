@@ -107,29 +107,6 @@ id - В случае если один из заготовленых клиен�
 login - если просто вводить логин и пароль, не выбирая из предложеных
 pass - пароль к акку
 */
-
-/*
-Vue.component('preloader', {
-    template: `
-    <div class="preloader" >
-        <div class="preloader__overlay">
-            <div class="preloader__container">
-                <div id="preloader">
-                    <div id="loader"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    `
-})
-
-
-*/
-
-
-import preloader from 'components/preloader.vue';
-
-
 var app = new Vue({
     el: '#app',
     data: {

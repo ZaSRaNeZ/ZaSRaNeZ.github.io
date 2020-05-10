@@ -12,8 +12,16 @@
 
 <body>
     <div id="app">
-        <transition name="slide">
-            <preloader v-if="preloaderStart"></preloader>
+        <transition name="fade">
+            <div class="preloader" v-if="preloaderStart">
+                <div class="preloader__overlay">
+                    <div class="preloader__container">
+                        <div id="preloader">
+                            <div id="loader"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </transition>
         <header class="header">
             <div class="header__container">
