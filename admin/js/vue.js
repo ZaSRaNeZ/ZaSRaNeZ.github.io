@@ -313,7 +313,7 @@ Vue.component('dataTable', {
         // Сохранить измененную строку
         save: function(arr) {
             console.log(arr)
-            var urlSend = `${this.url}?id=${arr[0]}&teacher=${arr[7]}&href=${arr[8]}&teacherInfo=${arr[9]}&hw=${arr[10]}`;
+            var urlSend = `${this.$root.url}?id=${arr[0]}&teacher=${arr[7]}&href=${arr[8]}&teacherInfo=${arr[9]}&hw=${arr[10]}`;
             console.log(urlSend);
             var xmlHttp = new XMLHttpRequest();
             xmlHttp.open("GET", urlSend, true); // true for asynchronous 
