@@ -240,7 +240,6 @@ Vue.component('filtersBlock', {
     `,
     methods: {
         addFilter: function(varName, param) {
-            console.log(param);
             if (this.$root.filtersArrs[varName].indexOf(param) >= 0) {
                 this.$root.filtersArrs[varName].splice(this.$root.filtersArrs[varName].indexOf(param), 1)
             } else {
@@ -312,9 +311,7 @@ Vue.component('dataTable', {
         },
         // Сохранить измененную строку
         save: function(arr) {
-            console.log(arr)
             var urlSend = `${this.$root.url}?id=${arr[0]}&teacher=${arr[7]}&href=${arr[8]}&teacherInfo=${arr[9]}&hw=${arr[10]}`;
-            console.log(urlSend);
             var xmlHttp = new XMLHttpRequest();
             xmlHttp.open("GET", urlSend, true); // true for asynchronous 
             xmlHttp.send(null);
@@ -401,8 +398,7 @@ var app = new Vue({
                         var output = JSON.parse(xhr.response);
                     } catch (e) {}
                 }
-                console.log(output)
-                console.log('log');
+                console.log('data was get');
                 saveData(output);
             }
             xhr.send()
