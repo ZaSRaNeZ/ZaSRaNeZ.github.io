@@ -19,7 +19,8 @@ li {
     background: #f5f6fa;
     min-width: 1300px;
     position: relative;
-    min-height: 100%;
+    height: 100%;
+    min-height: 100vh;
 }
 
 //================== VUE transition
@@ -83,10 +84,10 @@ li {
             &::after {
                 width: 100%;
             }
-            .header__account-open-button::after {
+            .header__settings-button::after {
                 top: 0;
             }
-            .header__account-open-button::before {
+            .header__settings-button::before {
                 border-color: #ff4e4a;
             }
             .header__account-name {
@@ -102,7 +103,11 @@ li {
             max-height: 100%;
         }
     }
-    &__account-open-button {
+    &__account-block {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+    &__settings-button {
         width: 50px;
         height: 50px;
         border-left: 1px solid #e2e2e2;
@@ -182,14 +187,14 @@ li {
 //============================================ Preloader
 .preloader {
     z-index: 999;
-    position: absolute;
-    top: -50px;
+    position: fixed;
+    top: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
     &__overlay {
         width: 100%;
         height: 100%;
-        min-width: 100vw;
-        min-height: 100vh;
         background-color: #000;
     }
     &__container {}
@@ -273,6 +278,7 @@ li {
 .content {
     margin-left: 50px;
     margin-top: 50px;
+    overflow: hidden;
     &__title {
         padding: 50px 100px;
     }
@@ -448,10 +454,11 @@ li {
     }
 }
 
+//============================================ Table
 .table {
     &__table {
         border-collapse: collapse;
-        overflow: hidden;
+        overflow: visible;
         background: #7918f2;
         background: -webkit-linear-gradient(-68deg, #ac32e4, #4801ff);
         background: -o-linear-gradient(-68deg, #ac32e4, #4801ff);
@@ -511,6 +518,42 @@ li {
             border: none;
             background: rgba(255, 255, 255, .6);
             outline: none;
+        }
+    }
+}
+
+.select {
+    position: relative;
+    overflow: visible;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 14px 10px;
+    &:hover .select__list {
+        display: flex;
+    }
+    &__item {}
+    &__item--selected {}
+    &__list {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        flex: 1 1 600px;
+        max-width: 450px;
+        width: max-content;
+        flex-wrap: wrap;
+        background: #8453ff;
+        z-index: 10;
+        &--open {
+            display: block;
+        }
+    }
+    &__list-item {
+        color: #fff;
+        padding: 10px 14px;
+        cursor: pointer;
+        &:hover {
+            background-color: #fff2;
         }
     }
 }

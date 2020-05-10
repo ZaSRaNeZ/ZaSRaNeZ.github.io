@@ -135,10 +135,12 @@ Vue.component('VueHeader', {
     <header class="header">
             <div class="header__container">
                 <div class="header__content">
-                    <div @click="selectUserStatus()" class="header__account">
+                    <div class="header__account">
+                    <div @click="selectUserStatus()" class="header__account-block">
                         <div class="header__account-icon"><img src="img/user.png" alt=""></div>
                         <div class="header__account-name">{{this.$root.adminName}}</div>
-                        <div class="header__account-open-button" v-bind:class="{'header__account-open-button--active':openUserStatus}"></div>
+                    </div>
+                        <div class="header__settings-button" v-bind:class="{'header__account-open-button--active':openUserStatus}"></div>
                     </div>
                     <div class="header__account-select account" v-bind:class="{'header__account-select--active':openUserStatus}">
                         <div class="account__container">
@@ -315,6 +317,89 @@ Vue.component('dataTable', {
             var xmlHttp = new XMLHttpRequest();
             xmlHttp.open("GET", urlSend, true); // true for asynchronous 
             xmlHttp.send(null);
+        }
+    }
+})
+Vue.component('adminDataTable', {
+    data: function() {
+        return {
+            editText: ''
+        }
+    },
+    template: `
+    <div class="table">
+        <div class="table__edit-text">{{editText}}</div>
+        <table class="table__table">
+            <thead>
+                <tr class="table__row table__row--head">
+                    <th class="table__cell table__cell--head" id>id</th>
+                    <th class="table__cell table__cell--head">Дата</th>
+                    <th class="table__cell table__cell--head">День</th>
+                    <th class="table__cell table__cell--head">Клас</th>
+                    <th class="table__cell table__cell--head">Урок</th>
+                    <th class="table__cell table__cell--head">Время проведения</th>
+                    <th class="table__cell table__cell--head">Предмет</th>
+                    <th class="table__cell table__cell--head">Учитель</th>
+                    <th class="table__cell table__cell--head">посилання на ефір</th>
+                    <th class="table__cell table__cell--head">роз'яснення вчителя</th>
+                    <th class="table__cell table__cell--head">посилання на д\\з</th>
+                </tr>
+            </thead>
+            <transition-group name="fade" tag=tbody>
+                <tr v-for="(item, index) in this.$root.inputData.all" v-if="rowRender(item)" :key="index" v-on:change="save(item)" class="table__row">
+                    <td  class="table__cell table__cell--empty">{{item[0]}}</td>
+                    <td class="table__cell table__cell--empty">{{item[1]}}</td>
+                    <td class="table__cell table__cell--empty">
+                        <div class="select">
+                            <div class="select__item select__item--selected">{{item[2]}}</div>
+                            <div class="select__list">
+                                <div v-for="daySelect in $root.inputData.days" @click=" changeSelectInfo(index,2,daySelect[1])" class="select__list-item">{{daySelect[1]}}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="table__cell table__cell--empty">
+                        <div class="select">
+                            <div class="select__item select__item--selected">{{item[3]}}</div>
+                            <div class="select__list">
+                                <div v-for="klassSelect in $root.inputData.classes" @click=" changeSelectInfo(index,3,klassSelect[1])" class="select__list-item">{{klassSelect[1]}}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="table__cell table__cell--empty">{{item[4]}}</td>
+                    <td class="table__cell table__cell--empty">{{item[5]}}</td>
+                    <td class="table__cell table__cell--empty">{{item[6]}}</td>
+                    <td class="table__cell"><input onFocus="this.select()" class="table__cell-input" v-on:click="editTextChange(item[7])" type="text" v-model:value="item[7]"></td>
+                    <td class="table__cell"><input onFocus="this.select()" class="table__cell-input" v-on:click="editTextChange(item[8])" type="text" v-model:value="item[8]"></td>
+                    <td class="table__cell"><input onFocus="this.select()" class="table__cell-input" v-on:click="editTextChange(item[9])" type="text" v-model:value="item[9]"></td>
+                    <td class="table__cell"><input onFocus="this.select()" class="table__cell-input" v-on:click="editTextChange(item[10])" type="text" v-model:value="item[10]"></td>
+                </tr>
+                </transition-group>
+        </table>
+    </div>
+    `,
+    methods: {
+        editTextChange: function(text) {
+            this.editText = text;
+        },
+        rowRender: function(item) {
+            return this.$root.checkFilter(item);
+        },
+        // Сохранить измененную строку
+        save: function(arr) {
+            var urlSend = `${this.$root.url}?id=${arr[0]}&teacher=${arr[7]}&href=${arr[8]}&teacherInfo=${arr[9]}&hw=${arr[10]}`;
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", urlSend, true); // true for asynchronous 
+            xmlHttp.send(null);
+            console.log(urlSend);
+        },
+        validateData: function() {
+
+        },
+        changeSelectInfo: function(id, index, param) {
+            console.log(param)
+            this.$root.inputData.all[id][index] = param;
+            console.log(this.$root.inputData.all[id][index])
+            this.$forceUpdate();
         }
     }
 })

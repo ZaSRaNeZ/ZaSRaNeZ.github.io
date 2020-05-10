@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <transition name="slide">
+            <preloader v-if="preloaderStart"></preloader>
+        </transition>
+        <vue-header></vue-header>
+        <aside-bar></aside-bar>
+        <div class="content">
+            <aditional-filter></aditional-filter>
+            <div class="content__title">
+                <h1>Страница полного доступа</h1>
+            </div>
+            <filters-block></filters-block>
+            <transition name="slide"></transition>
+            <admin-data-table>
+            </admin-data-table>
+        </div>
+    </div>
+
+    <script src="js/vue.js"></script>
+</body>
+
+</html>
