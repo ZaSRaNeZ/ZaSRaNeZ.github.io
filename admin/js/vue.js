@@ -108,7 +108,9 @@ login - если просто вводить логин и пароль, не в
 pass - пароль к акку
 */
 
-/*
+
+
+
 Vue.component('preloader', {
     template: `
     <div class="preloader" >
@@ -122,46 +124,221 @@ Vue.component('preloader', {
     </div>
     `
 })
-
-
-*/
-
-
-import preloader from 'components/preloader.vue';
-
-
-var app = new Vue({
-    el: '#app',
-    data: {
-        classFilterArr: [],
-        dayFilterArr: [],
-        lessonsFilterArr: [],
-        subjectFilterArr: [],
-        changedArray: [],
-        all: [],
-        classes: [],
-        days: [],
-        lessons: [],
-        editText: '',
-        url: 'https://script.google.com/macros/s/AKfycbxCkbTMCe_FzyVQTxt2NTYxROMy5zCh52MILKgW6ra5wny2FLY/exec',
-        filterSelect: {
-            class: true,
-            days: false,
-            lessons: false,
-            subject: false,
-        },
-        adminName: 'Вибивана Л.М.',
-        teachers: [],
-        preloaderStart: true,
-        openUserStatus: false,
-        adminNameSearch: '',
-        showEmptyLessons: false
-
+Vue.component('VueHeader', {
+    data: function() {
+        return {
+            openUserStatus: false,
+            adminNameSearch: ''
+        }
     },
+    template: `
+    <header class="header">
+            <div class="header__container">
+                <div class="header__content">
+                    <div @click="selectUserStatus()" class="header__account">
+                        <div class="header__account-icon"><img src="img/user.png" alt=""></div>
+                        <div class="header__account-name">{{this.$root.adminName}}</div>
+                        <div class="header__account-open-button" v-bind:class="{'header__account-open-button--active':openUserStatus}"></div>
+                    </div>
+                    <div class="header__account-select account" v-bind:class="{'header__account-select--active':openUserStatus}">
+                        <div class="account__container">
+                            <div class="account__wrapper">
+                                <div class="account__content">
+                                    <div class="account__search"><input type="text" class="account__search-input" v-model:value="adminNameSearch" placeholder="Введите имя для поиска"></div>
+                                    <div class="account__items">
+                                        <ul class="account__list">
+                                            <li v-for="teacher in this.$root.inputData.teachers" v-if="teacher[1].toLowerCase().indexOf(adminNameSearch.toLowerCase()) >=0" @click="selectUser(teacher[1])" class="account__item"><span>{{teacher[1]}}</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>`,
+    methods: {
+        selectUserStatus: function() {
+            this.openUserStatus = this.openUserStatus ? false : true;
+        },
+        selectUser: function(name) {
+            this.$root.adminName = name;
+            this.openUserStatus = false;
+        }
+    }
+});
+Vue.component('asideBar', {
+    template: `
+    <aside class="aside">
+        <div class="aside__logo"></div>
+        <nav class="nav">
+        </nav>
+    </aside>
+    `
+})
+Vue.component('aditionalFilter', {
+    template: `
+    <div class="aditional-filter">
+        <div class="aditional-filter__conteiner">
+            <div class="aditional-filter__title">
+                <h3>Отображать уроки без учителя?</h3>
+            </div>
+            <div class="aditional-filter__buttons" @click="showEmpty()" v-bind:class="{'aditional-filter__buttons--yes':this.$root.settings.showEmptyLessons , 'aditional-filter__buttons--no':!this.$root.settings.showEmptyLessons}">
+                <div class="aditional-filter__button" v-bind:class="{'aditional-filter__button--active': this.$root.settings.showEmptyLessons}">Да</div>
+                <div class="aditional-filter__button" v-bind:class="{'aditional-filter__button--active': !this.$root.settings.showEmptyLessons}">Нет</div>
+            </div>
+        </div>
+    </div>
+    `,
+    methods: {
+        showEmpty: function() {
+            this.$root.settings.showEmptyLessons = this.$root.settings.showEmptyLessons ? false : true;
+        }
+    }
+})
+Vue.component('filtersBlock', {
+    data: function() {
+        return {
+            filterSelect: {
+                class: true,
+                days: false,
+                lessons: false,
+                subject: false,
+            }
+        }
+    },
+    template: `
+    <div class="content__filter-contetn filter">
+        <div class="filter__content">
+            <div class="filter__title">
+                <ul class="filter__title-list">
+                    <li class="filter__title-item" @click="selectFilter('class')" v-bind:class="{'filter__title-item--active':filterSelect.class}">
+                        <h2>Классы</h2>
+                    </li>
+                    <li class="filter__title-item" @click="selectFilter('days')" v-bind:class="{'filter__title-item--active':filterSelect.days}">
+                        <h2>Дни</h2>
+                    </li>
+                    <li class="filter__title-item" @click="selectFilter('lessons')" v-bind:class="{'filter__title-item--active':filterSelect.lessons}">
+                        <h2>Уроки</h2>
+                    </li>
+                    <li class="filter__title-item" @click="selectFilter('subject')" v-bind:class="{'filter__title-item--active':filterSelect.subject}">
+                        <h2>Предметы</h2>
+                    </li>
+                </ul>
+            </div>
+            <div class="filter__items">
+                <div class="filter__container">
+                    <div class="filter__wrapper">
+                        <div v-for="klass in this.$root.inputData.classes" v-if="filterSelect.class" v-bind:class="{'filter__item--active': filterActiveCheck('classFilterArr',klass[1]) }" @click="addFilter('classFilterArr',klass[1])" class="filter__item">{{klass[1]}}</div>
+                        <div v-for="day in this.$root.inputData.days" v-if="filterSelect.days" v-bind:class="{'filter__item--active': filterActiveCheck('dayFilterArr',day[1])}" @click="addFilter('dayFilterArr',day[1])" class="filter__item">{{day[1]}}</div>
+                        <div v-for="lesson in this.$root.inputData.lessons" v-if="filterSelect.lessons" v-bind:class="{'filter__item--active': filterActiveCheck('lessonsFilterArr',lesson[1])}" @click="addFilter('lessonsFilterArr',lesson[1])" class="filter__item">{{lesson[1]}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    `,
+    methods: {
+        addFilter: function(varName, param) {
+            console.log(param);
+            if (this.$root.filtersArrs[varName].indexOf(param) >= 0) {
+                this.$root.filtersArrs[varName].splice(this.$root.filtersArrs[varName].indexOf(param), 1)
+            } else {
+                this.$root.filtersArrs[varName].push(param);
+            }
+        },
+        selectFilter: function(filterEl) {
+            this.filterSelect.class = false;
+            this.filterSelect.days = false;
+            this.filterSelect.lessons = false;
+            this.filterSelect.subject = false;
+            this.filterSelect[filterEl] = true;
+        },
+        filterActiveCheck: function(checkedArr, checkParam) {
+            if (this.$root.filtersArrs[checkedArr].indexOf(checkParam) >= 0) return true
+            else return false
+        }
+    }
+})
+Vue.component('dataTable', {
+    data: function() {
+        return {
+            editText: ''
+        }
+    },
+    template: `
+    <div class="table">
+        <div class="table__edit-text">{{editText}}</div>
+        <table class="table__table">
+            <thead>
+                <tr class="table__row table__row--head">
+                    <th class="table__cell table__cell--head" id>id</th>
+                    <th class="table__cell table__cell--head">Дата</th>
+                    <th class="table__cell table__cell--head">День</th>
+                    <th class="table__cell table__cell--head">Клас</th>
+                    <th class="table__cell table__cell--head">Урок</th>
+                    <th class="table__cell table__cell--head">Время проведения</th>
+                    <th class="table__cell table__cell--head">Предмет</th>
+                    <th class="table__cell table__cell--head">Учитель</th>
+                    <th class="table__cell table__cell--head">посилання на ефір</th>
+                    <th class="table__cell table__cell--head">роз'яснення вчителя</th>
+                    <th class="table__cell table__cell--head">посилання на д\\з</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in this.$root.inputData.all" v-if="rowRender(item)" v-on:change="this.$root.save(item)" class="table__row">
+                    <td class="table__cell table__cell--empty">{{item[0]}}</td>
+                    <td class="table__cell table__cell--empty">{{item[1]}}</td>
+                    <td class="table__cell table__cell--empty">{{item[2]}}</td>
+                    <td class="table__cell table__cell--empty">{{item[3]}}</td>
+                    <td class="table__cell table__cell--empty">{{item[4]}}</td>
+                    <td class="table__cell table__cell--empty">{{item[5]}}</td>
+                    <td class="table__cell table__cell--empty">{{item[6]}}</td>
+                    <td class="table__cell"><input onFocus="this.select()" class="table__cell-input" v-on:click="editTextChange(item[7])" type="text" v-model:value="item[7]"></td>
+                    <td class="table__cell"><input onFocus="this.select()" class="table__cell-input" v-on:click="editTextChange(item[8])" type="text" v-model:value="item[8]"></td>
+                    <td class="table__cell"><input onFocus="this.select()" class="table__cell-input" v-on:click="editTextChange(item[9])" type="text" v-model:value="item[9]"></td>
+                    <td class="table__cell"><input onFocus="this.select()" class="table__cell-input" v-on:click="editTextChange(item[10])" type="text" v-model:value="item[10]"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    `,
     methods: {
         editTextChange: function(text) {
             this.editText = text;
         },
+        rowRender: function(item) {
+            return this.$root.checkFilter(item);
+        }
+    }
+})
+
+var app = new Vue({
+    el: '#app',
+    data: {
+        filtersArrs: {
+            classFilterArr: [],
+            dayFilterArr: [],
+            lessonsFilterArr: [],
+            subjectFilterArr: [],
+        },
+        inputData: {
+            all: [],
+            classes: [],
+            days: [],
+            lessons: [],
+            teachers: [],
+        },
+        url: 'https://script.google.com/macros/s/AKfycbxCkbTMCe_FzyVQTxt2NTYxROMy5zCh52MILKgW6ra5wny2FLY/exec',
+        adminName: 'Вибивана Л.М.',
+        preloaderStart: true,
+        settings: {
+            showEmptyLessons: false,
+        },
+
+
+    },
+    methods: {
         save: function(arr) {
             console.log(arr)
             var urlSend = `${this.url}?id=${arr[0]}&teacher=${arr[7]}&href=${arr[8]}&teacherInfo=${arr[9]}&hw=${arr[10]}`;
@@ -170,54 +347,45 @@ var app = new Vue({
             xmlHttp.open("GET", urlSend, true); // true for asynchronous 
             xmlHttp.send(null);
         },
-        addFilter: function(varName, param) {
-            if (this[varName].indexOf(param) >= 0) {
-                this[varName].splice(this[varName].indexOf(param), 1)
-            } else {
-                this[varName].push(param);
-            }
-        },
-        checkFilter: function(arr) {
-            var out = true; // Нужно для окончательного вывода
-            if (this.adminName == arr[7] || (this.showEmptyLessons ? arr[7].trim() == '' : false)) {
-                out = true;
-            } else {
-                return false;
-            }
-
-            // проверка на пустоту масивов фильтра
-            if (this.classFilterArr.length == 0 &&
-                this.dayFilterArr.length == 0 &&
-                this.lessonsFilterArr.length == 0 &&
-                this.subjectFilterArr.length == 0) {
-                return true;
-            }
-            // Проверка на фильтр класса
-            if (this.classFilterArr.indexOf(arr[3]) >= 0 || this.classFilterArr.length == 0) {
-                out = true;
-            } else {
-                return false;
-            }
-            //Проверка на фильтр дня
-            if (this.dayFilterArr.indexOf(arr[2]) >= 0 || this.dayFilterArr.length == 0) {
-                out = true;
-            } else {
-                return false;
-            }
-            //проверка на фильтр урока
-            if (this.lessonsFilterArr.indexOf(arr[4]) >= 0 || this.lessonsFilterArr.length == 0) {
+        settingsCheck(arr) {
+            var out = false; // Нужно для окончательного вывода
+            if (this.adminName == arr[7] || (this.settings.showEmptyLessons ? arr[7].trim() == '' : false)) {
                 out = true;
             } else {
                 return false;
             }
             return out;
         },
-        selectFilter: function(filterEl) {
-            this.filterSelect.class = false;
-            this.filterSelect.days = false;
-            this.filterSelect.lessons = false;
-            this.filterSelect.subject = false;
-            this.filterSelect[filterEl] = true;
+        checkFilter: function(arr) {
+            var out = true;
+            out = this.settingsCheck(arr);
+            if (!out) return false;
+            // проверка на пустоту масивов фильтра
+            if (this.filtersArrs.classFilterArr.length == 0 &&
+                this.filtersArrs.dayFilterArr.length == 0 &&
+                this.filtersArrs.lessonsFilterArr.length == 0 &&
+                this.filtersArrs.subjectFilterArr.length == 0) {
+                return true;
+            }
+            // Проверка на фильтр класса
+            if (this.filtersArrs.classFilterArr.indexOf(arr[3]) >= 0 || this.filtersArrs.classFilterArr.length == 0) {
+                out = true;
+            } else {
+                return false;
+            }
+            //Проверка на фильтр дня
+            if (this.filtersArrs.dayFilterArr.indexOf(arr[2]) >= 0 || this.filtersArrs.dayFilterArr.length == 0) {
+                out = true;
+            } else {
+                return false;
+            }
+            //проверка на фильтр урока
+            if (this.filtersArrs.lessonsFilterArr.indexOf(arr[4]) >= 0 || this.filtersArrs.lessonsFilterArr.length == 0) {
+                out = true;
+            } else {
+                return false;
+            }
+            return out;
         },
         getData: function() {
             var app = "https://script.google.com/macros/s/AKfycbzEUg6m39aebib5Pl6m6HG6iRqt5kXJRbG1BIZtVSy5_EAix9k/exec",
@@ -236,16 +404,6 @@ var app = new Vue({
                 saveData(output);
             }
             xhr.send()
-        },
-        selectUserStatus: function() {
-            this.openUserStatus = this.openUserStatus ? false : true;
-        },
-        selectUser: function(name) {
-            this.adminName = name;
-            this.openUserStatus = false;
-        },
-        showEmpty: function() {
-            this.showEmptyLessons = this.showEmptyLessons ? false : true;
         }
     },
     beforeMount: function() {
@@ -253,13 +411,14 @@ var app = new Vue({
 
     },
     watch: {}
+
 })
 
 function saveData(data) {
-    app.all = data.all;
-    app.classes = data.classes;
-    app.days = data.days;
-    app.lessons = data.lessons;
-    app.teachers = data.teachers;
+    app.inputData.all = data.all;
+    app.inputData.classes = data.classes;
+    app.inputData.days = data.days;
+    app.inputData.lessons = data.lessons;
+    app.inputData.teachers = data.teachers;
     app.preloaderStart = false;
 }

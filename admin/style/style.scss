@@ -43,7 +43,7 @@ li {
 }
 
 .slide-leave-to {
-    transform: translate(-100%, 0);
+    transform: translate(200%, 0);
 }
 
 //============================================ Header
@@ -180,8 +180,7 @@ li {
 }
 
 //============================================ Preloader
-
-/*.preloader {
+.preloader {
     z-index: 999;
     position: absolute;
     top: -50px;
@@ -266,7 +265,6 @@ li {
         }
     }
 }
-*/
 
 .nav {}
 
