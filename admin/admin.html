@@ -18,7 +18,9 @@
         <vue-header></vue-header>
         <aside-bar></aside-bar>
         <div class="content">
-            <aditional-filter></aditional-filter>
+            <transition name="slide">
+                <aditional-filter v-if="openSettings"></aditional-filter>
+            </transition>
             <div class="content__title">
                 <h1>Страница полного доступа</h1>
             </div>

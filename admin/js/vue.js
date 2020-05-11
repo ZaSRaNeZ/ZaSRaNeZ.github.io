@@ -128,11 +128,12 @@ Vue.component('VueHeader', {
     data: function() {
         return {
             openUserStatus: false,
-            adminNameSearch: ''
+            adminNameSearch: '',
+            openSettings: false
         }
     },
     template: `
-    <header class="header">
+        <header class="header">
             <div class="header__container">
                 <div class="header__content">
                     <div class="header__account">
@@ -140,7 +141,7 @@ Vue.component('VueHeader', {
                         <div class="header__account-icon"><img src="img/user.png" alt=""></div>
                         <div class="header__account-name">{{this.$root.adminName}}</div>
                     </div>
-                        <div class="header__settings-button" v-bind:class="{'header__account-open-button--active':openUserStatus}"></div>
+                        <div class="header__settings-button" @click="settingsButton()" v-bind:class="{'header__settings-button--active':openSettings}"></div>
                     </div>
                     <div class="header__account-select account" v-bind:class="{'header__account-select--active':openUserStatus}">
                         <div class="account__container">
@@ -158,7 +159,8 @@ Vue.component('VueHeader', {
                     </div>
                 </div>
             </div>
-        </header>`,
+        </header>
+        `,
     methods: {
         selectUserStatus: function() {
             this.openUserStatus = this.openUserStatus ? false : true;
@@ -166,6 +168,11 @@ Vue.component('VueHeader', {
         selectUser: function(name) {
             this.$root.adminName = name;
             this.openUserStatus = false;
+        },
+        settingsButton: function() {
+            this.openSettings = this.openSettings ? false : true;
+            this.$root.openSettings = this.$root.openSettings ? false : true;
+
         }
     }
 });
@@ -346,7 +353,7 @@ Vue.component('adminDataTable', {
                 </tr>
             </thead>
             <transition-group name="fade" tag=tbody>
-                <tr v-for="(item, index) in this.$root.inputData.all" v-if="rowRender(item)" :key="index" v-on:change="save(item)" class="table__row">
+                <tr v-for="(item, index) in this.$root.inputData.all" v-if="rowRender(item)" :key="item[0]" v-on:change="save(item)" class="table__row">
                     <td  class="table__cell table__cell--empty">{{item[0]}}</td>
                     <td class="table__cell table__cell--empty">{{item[1]}}</td>
                     <td class="table__cell table__cell--empty">
@@ -423,6 +430,7 @@ var app = new Vue({
         url: 'https://script.google.com/macros/s/AKfycbxCkbTMCe_FzyVQTxt2NTYxROMy5zCh52MILKgW6ra5wny2FLY/exec',
         adminName: 'Вибивана Л.М.',
         preloaderStart: true,
+        openSettings: false,
         settings: {
             showEmptyLessons: false,
         },
