@@ -294,7 +294,7 @@ Vue.component('dataTable', {
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="item in this.$root.inputData.all" v-if="rowRender(item)" v-on:change="save(item)" class="table__row">
+                <tr v-for="(item, index) in this.$root.inputData.all" v-if="rowRender(item)" :key="item[0]" v-on:change="save(item)" class="table__row">
                     <td class="table__cell table__cell--empty">{{item[0]}}</td>
                     <td class="table__cell table__cell--empty">{{item[1]}}</td>
                     <td class="table__cell table__cell--empty">{{item[2]}}</td>
@@ -302,10 +302,10 @@ Vue.component('dataTable', {
                     <td class="table__cell table__cell--empty">{{item[4]}}</td>
                     <td class="table__cell table__cell--empty">{{item[5]}}</td>
                     <td class="table__cell table__cell--empty">{{item[6]}}</td>
-                    <td class="table__cell"><input onFocus="this.select()" class="table__cell-input" v-on:click="editTextChange(item[7])" type="text" v-model:value="item[7]"></td>
-                    <td class="table__cell"><input onFocus="this.select()" class="table__cell-input" v-on:click="editTextChange(item[8])" type="text" v-model:value="item[8]"></td>
-                    <td class="table__cell"><input onFocus="this.select()" class="table__cell-input" v-on:click="editTextChange(item[9])" type="text" v-model:value="item[9]"></td>
-                    <td class="table__cell"><input onFocus="this.select()" class="table__cell-input" v-on:click="editTextChange(item[10])" type="text" v-model:value="item[10]"></td>
+                    <td class="table__cell"><input onFocus="this.select()" class="table__cell-input" v-on:keyup="editTextChange(item[7])" v-on:click="editTextChange(item[7])" type="text" v-model:value="item[7]"></td>
+                    <td class="table__cell"><input onFocus="this.select()" class="table__cell-input" v-on:keyup="editTextChange(item[8])" v-on:click="editTextChange(item[8])" type="text" v-model:value="item[8]"></td>
+                    <td class="table__cell"><input onFocus="this.select()" class="table__cell-input" v-on:keyup="editTextChange(item[9])" v-on:click="editTextChange(item[9])" type="text" v-model:value="item[9]"></td>
+                    <td class="table__cell"><input onFocus="this.select()" class="table__cell-input" v-on:keyup="editTextChange(item[10])" v-on:click="editTextChange(item[10])" type="text" v-model:value="item[10]"></td>
                 </tr>
             </tbody>
         </table>
