@@ -575,6 +575,9 @@ li {
   font-size: 14px;
   color: #fff;
   line-height: 1.4;
+  border: none;
+  text-align: center;
+  background: transparent;
 }
 
 .table__cell:hover {
@@ -582,13 +585,6 @@ li {
 }
 
 .table__cell--empty {
-  border: none;
-  text-align: center;
-  font-size: 14px;
-  color: #fff;
-  line-height: 1.4;
-  background: transparent;
-  padding: 14px 10px;
   cursor: default;
 }
 

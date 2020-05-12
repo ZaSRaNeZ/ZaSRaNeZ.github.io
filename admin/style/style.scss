@@ -491,18 +491,14 @@ li {
         font-size: 14px;
         color: #fff;
         line-height: 1.4;
+        border: none;
+        text-align: center;
+        background: transparent;
         &:hover {
             background-color: rgba(255, 255, 255, .2);
         }
     }
     &__cell--empty {
-        border: none;
-        text-align: center;
-        font-size: 14px;
-        color: #fff;
-        line-height: 1.4;
-        background: transparent;
-        padding: 14px 10px;
         cursor: default;
     }
     &__cell-input {
