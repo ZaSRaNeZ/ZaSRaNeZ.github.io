@@ -577,7 +577,7 @@ a {
 }
 
 .about__container {
-  background: url(/img/about/background/01.png) center no-repeat;
+  background: url(../img/about/background/01.png) center no-repeat;
   background-size: cover;
   padding: 110px 0 90px 0;
 }
