@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    
+    
+    
+    <style>
+        #comments{
+             padding: 50px;
+            
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap-reverse;
+            
+        }
+        .coment{
+            display: block;
+            width: 200px;
+            height: 300px;
+            margin: 20px;
+              font-family: 'Pacifico', cursive;
+            text-align: center;
+            overflow: hidden;
+            box-shadow: 0 0 5px;
+            padding: 1em;
+            transition: .2s;
+            cursor: pointer;
+            
+        }
+         .coment:hover{
+
+             transform: scale(1.2);
+             
+        }
+        
+        #newCommentText{
+            
+        }
+        #add_comment{
+            
+            padding: 50px;
+            float: right;
+        }
+        #newCommentText:hover {
+            transform: none;
+            cursor: text;
+        }
+    </style>
+    
+</head>
+<body>
+    <nav id="navigation">
+               <input id='burger_check' type="checkbox">
+               <div id="burger"></div>
+            
+                
+        <ul class='nav_list'>
+           
+            <li><a href="#">Главная</a></li>
+            <li><a href="#">Супы</a></li>
+            <li><a href="#">Гарнир</a></li>
+            <li><a href="#">Основное блюдо</a></li>
+            <li><a href="#">Десерты</a></li>
+        </ul>
+        
+        <div class="overlay" onclick="document.getElementById('burger_check').checked = false"></div>
+
+    </nav>
+    
+    <div id="container">
+       <div id="headbar">
+            <img src="LOGO.png" alt="" style="float: right; margin-right: 100px;">
+        </div>
+        <div id="header">
+           
+           <video id='header_video'  autoplay muted loop  >
+           <source src='kitchen.mp4' type="video/mp4">
+            </video>
+            <div class="overlay_header">
+                
+            </div>
+            <div class="logo">
+                
+                <img src="LOGO.png" alt="">
+                
+            </div>
+            
+        </div>
+        
+        
+        <div id="center">
+        <div id="add_comment">
+        <textarea name="" id="newCommentText" class="coment"></textarea>
+        
+  
+           
+           <button onclick="newCom()">Опублковать</button>
+           
+           <script>
+                function newCom (){
+                   var text = document.getElementById("newCommentText").value;
+               document.getElementById('comments').innerHTML += '<div class="coment"><p>'+ text +'</p> </div>';
+                    document.getElementById('newCommentText').value = '';
+                }
+           </script>
+           
+           
+           
+       </div>
+       <div id="comments">
+           
+           <div class="coment">
+               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi natus, consectetur quia pariatur nobis nihil explicabo, praesentium cum possimus eveniet?</p>
+           </div>
+           
+           
+           
+       </div>
+      
+       
+       
+       
+       
+       
+       
+        </div>
+        
+        <div id="footer">
+            
+        </div>
+
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
